@@ -1,0 +1,37 @@
+.search {
+  display: flex;
+  font-size: 1.5rem;
+}
+
+.search__container {
+  display: flex;
+}
+
+.search__btn {
+  outline: none;
+
+}
+
+.search__input {
+  transition: all 0.2s;
+  width: 0;
+
+  &.is-active {
+    width: 17.25em;
+  }
+}
+
+.search__container {
+  transition: all 0.2s;
+  width: 0;
+
+  &.is-active {
+    width: rem(220);
+  }
+}
+
+.search__instructions {
+  position: absolute;
+  font-size: 0.75em;
+  font-weight: 600;
+}

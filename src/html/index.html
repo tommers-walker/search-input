@@ -1,0 +1,30 @@
+{#
+  Nunjucks Templating!
+  Homepage: https://mozilla.github.io/nunjucks/
+  Docs: https://mozilla.github.io/nunjucks/api.html
+#}
+
+{% extends 'layouts/application.html' %}
+
+{% block content %}
+
+  <form class="search header__search">
+    <input id="search-input" class="search__input input" type="text" name="search" value="" placeholder="Press enter to search or ESC to close">
+
+    <button id="search-btn" type="submit" name="button" class="search__btn btn btn--icon-only">
+      <span>Search</span>
+      <div class="btn__container">
+        <div class="btn__icon btn__icon--search" id="search-icon">
+          <svg viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg"><g transform="translate(-3 -3)" stroke="#fff" stroke-width="2" fill="none" fill-rule="evenodd"><circle cx="10" cy="10" r="6"></circle><path d="M14.412 14.412L20 20" stroke-linecap="round"></path></g></svg>
+        </div>
+
+        <div class="btn__icon btn__icon--circle" id="circle-icon">
+          <svg viewBox="0 0 90 90" xmlns="http://www.w3.org/2000/svg">
+            <circle id="circle-path" stroke="#fff" stroke-width="10" cx="45" cy="45" r="40" fill="none" fill-rule="evenodd"/>
+          </svg>
+        </div>
+      </div>
+    </button>
+  </form>
+
+{% endblock %}
