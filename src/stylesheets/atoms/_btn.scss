@@ -2,41 +2,49 @@
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  padding: 0.75em;
-  background: $black;
+  padding: 0.5em;
   color: $white;
   font-family: $ff-primary;
-  text-transform: uppercase;
+  outline: none;
   border: none;
-}
+  border-radius: 50%;
+  background-color: $black;
+  position: relative;
+  z-index: 1;
 
-.btn--load {
+  &::before {
+    display: block;
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-radius: 50%;
+    box-shadow: 0 0.5em 0.5em rgba($black, 0.2);
+    transition: opacity 0.1s;
 
+    .is-active & {
+      opacity: 0;
+    }
+  }
 }
 
 .btn--icon-only {
   @include accessible-btn;
 }
 
-.btn__container {
+.btn__icon {
   display: flex;
   align-items: center;
   position: relative;
   width: 1.25em;
 }
 
-.btn__icon {
-  position: relative;
-  width: 100%;
-  fill: $white;
-}
-
 .btn__icon--search {
-  @include svg-ratio(18, 18);
-}
+  @include svg-ratio(82, 82);
 
-.btn__icon--circle {
-  @include svg-ratio(90, 90);
-  position: absolute;
-  opacity: 0;
+  path {
+    fill: $white;
+  }
 }

@@ -8,21 +8,20 @@
 
 {% block content %}
 
-  <form class="search header__search">
-    <input id="search-input" class="search__input input" type="text" name="search" value="" placeholder="Press enter to search or ESC to close">
+  <form class="search header__search is-loading" id="search">
+    <div class="search__container" id="search-container">
+      <svg preserveAspectRatio="none" width="100%" height="100%">
+        <rect class="shape" width="100%" height="100%" id="svg-box">
+      </svg>
+      <input id="search-input" class="search__input input" type="text" name="search" value="" placeholder="Search...">
+    </div>
 
     <button id="search-btn" type="submit" name="button" class="search__btn btn btn--icon-only">
       <span>Search</span>
-      <div class="btn__container">
-        <div class="btn__icon btn__icon--search" id="search-icon">
-          <svg viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg"><g transform="translate(-3 -3)" stroke="#fff" stroke-width="2" fill="none" fill-rule="evenodd"><circle cx="10" cy="10" r="6"></circle><path d="M14.412 14.412L20 20" stroke-linecap="round"></path></g></svg>
-        </div>
-
-        <div class="btn__icon btn__icon--circle" id="circle-icon">
-          <svg viewBox="0 0 90 90" xmlns="http://www.w3.org/2000/svg">
-            <circle id="circle-path" stroke="#fff" stroke-width="10" cx="45" cy="45" r="40" fill="none" fill-rule="evenodd"/>
-          </svg>
-        </div>
+      <div class="btn__icon btn__icon--search" id="search-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 82 82">
+          <path id="search-svg" d="M80.4,74 L65.8,59.5 C77.2,44.9 76,24.1 62.9,11 C56,4.1 46.8,0.3 37,0.3 C27.2,0.3 18,4.1 11.1,11 C4.2,17.9 0.4,27.1 0.4,36.9 C0.4,46.7 4.2,55.9 11.1,62.8 C18,69.7 27.2,73.5 37,73.5 C45.1,73.5 53.1,70.8 59.5,65.7 L74,80.4 C74.9,81.3 76,81.7 77.2,81.7 C78.4,81.7 79.5,81.2 80.4,80.4 C82.2,78.7 82.2,75.8 80.4,74 Z M64.6,36.9 C64.6,44.3 61.7,51.2 56.5,56.4 C51.3,61.6 44.3,64.5 37,64.5 C29.7,64.5 22.7,61.6 17.5,56.4 C12.3,51.2 9.4,44.2 9.4,36.9 C9.4,29.5 12.3,22.6 17.5,17.4 C22.7,12.2 29.7,9.3 37,9.3 C44.4,9.3 51.3,12.2 56.5,17.4 C61.7,22.6 64.6,29.5 64.6,36.9 Z"/>
+        </svg>
       </div>
     </button>
   </form>

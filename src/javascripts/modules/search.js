@@ -1,97 +1,45 @@
-import { utils } from './utils';
 import 'gsap';
 import '../vendor/DrawSVGPlugin';
 
+const searchEl = document.querySelector('#search');
+const searchContainer = document.querySelector('#search-container');
 const searchBtn = document.querySelector('#search-btn');
 const searchInput = document.querySelector('#search-input');
-const circlePath = document.querySelector('#circle-path');
-const circleIcon = document.querySelector('#circle-icon');
-const searchIcon = document.querySelector('#search-icon');
+const svgBox = document.querySelector('#svg-box');
+const searchSvg = document.querySelector('#search-svg');
 
-const enterKeyCode = 13;
-const escKeyCode = 27;
-
-let done;
-
-const swapIconsTl = new TimelineMax({paused:true})
-
-swapIconsTl
-.fromTo(circleIcon, 0.2, {
-  opacity: 0,
-  scale: 0
-}, {
-  opacity: 1,
-  scale: 1
-})
-.fromTo(searchIcon, 0.2, {
-  opacity: 1,
-  scale: 1
-}, {
-  opacity: 0,
-  scale: 0
-}, "-=0.2")
-
-const circlePathTl = new TimelineMax({
+const searchTl = new TimelineLite({
   paused: true,
-  repeat: -1,
-  onStart: function() {
-    done = false;
-  },
-  onRepeat: function() {
-    if (done) {
-      this.pause();
-      swapIconsTl.reverse();
-    }
+  reversed: true,
+  onReverseComplete: function() {
+    searchEl.classList.remove('is-active')  
   }
 });
+searchTl
+.to(searchBtn, 0.1, {background: "#FFF", onStart: function() {
+  searchEl.classList.add('is-active')
+}})
+.to(searchSvg, 0.1, {fill: "#000"}, "-=0.1")
+.from(searchContainer, 0.25, {width: 0}, "-=0.1")
+.from(svgBox, 0.75, {delay: 0.01, drawSVG: 0, ease: Power1.easeIn})
+.from(searchInput, 0.1, {opacity: 0, y: 10}, "-=0.75")
 
-circlePathTl
-.from(circlePath, 0.4, {
-  drawSVG: "0% 0%",
-  ease: Power1.easeOut
-}, "-=0.1")
-.to(circlePath, 0.4, {
-  drawSVG: "100% 100%",
-  ease: Power1.easeOut
-})
-
-const searchAnim = () => {
-  swapIconsTl.restart();
-  circlePathTl.restart();
-}
-
-const toggleSearchInput = () => {
-  utils.toggleClass(searchInput, 'is-active')
-  utils.hasClass(searchInput, 'is-active') ? searchInput.focus() : searchInput.blur();
-}
-
-const submitSearch = () => {
-  searchAnim();
-
-  // Simulate AJAX call..
-  setTimeout(function() {
-    done = true;
-  }, 1000)
+// toggle function
+function toggleAnim() {
+  searchTl.reversed() ? searchTl.play() : searchTl.reverse();
 }
 
 const search = {
   init() {
-    searchBtn.addEventListener('click', function(e) {
-      e.preventDefault();
-      toggleSearchInput();
-    });
+    window.onload = function() {
+      searchEl.classList.remove('is-loading');
 
-    document.addEventListener('keydown', function(e) {
-      if (utils.hasClass(searchInput, 'is-active')) {
-        if (e.keyCode === enterKeyCode) {
-          e.preventDefault();
-          // Submit form
-          submitSearch();
-        } else if (e.keyCode === escKeyCode) {
-          toggleSearchInput();
-        }
-      }
-    });
+      searchBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        searchInput.focus();
+        toggleAnim();
+      });
+    }
   }
 }
 

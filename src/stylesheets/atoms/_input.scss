@@ -1,9 +1,10 @@
 .input {
-  padding: 0;
+  padding: 0.75em 1em;
   width: 100%;
-  border: none;
-  border-bottom: 1px solid $black;
   outline: none;
   background-color: transparent;
   font-family: inherit;
+  border: none;
+  position: relative;
+  z-index: 1;
 }
